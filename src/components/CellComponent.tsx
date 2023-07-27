@@ -6,7 +6,11 @@ interface CellProps {
 }
 
 const CellComponent: FC<CellProps> = ({ cell }) => {
-  return <div className={["cell", cell.color].join(" ")}></div>; // объединили два класса в одну строку прямо в фигурных скобках и они теперь применяются соответственно к каждой ячейке
+  return (
+    <div className={["cell", cell.color].join(" ")}>
+      {cell.figure?.logo && <img src={cell.figure.logo} alt="" />}
+    </div>
+  ); // объединили два класса в одну строку прямо в фигурных скобках и они теперь применяются соответственно к каждой ячейке
 };
 
 export default CellComponent;

@@ -15,6 +15,7 @@ function App() {
     // функция для рестарта игры
     const newBoard = new Board(); // создаем новую доску
     newBoard.initCells(); // создаем ячейки
+    newBoard.addFigures(); // добавляем фигуры
     setBoard(newBoard); // сохраняем чистую пустую доску в наше состояние
   }
 
