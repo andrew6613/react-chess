@@ -32,6 +32,25 @@ export class Board {
     return this.cells[y][x];
   }
 
+  public getCopyBoard() {
+    // Получаем копию доски
+    const newBoard = new Board();
+    newBoard.cells = this.cells;
+    return newBoard;
+  }
+
+  public highlightCells(selectedCell: Cell | null) {
+    // Метод для определения, доступна ли клетка для хода или нет
+    // Проходимся двумя циклами по массиву ячеек
+    for (let i = 0; i < this.cells.length; i++) {
+      const row = this.cells[i];
+      for (let j = 0; j < row.length; j++) {
+        const target = row[j];
+        target.available = !!selectedCell?.figure?.canMove(target); // Чтобы понять, доступна ли клетка для хода, мы получаем фигуру, которая стоит на выбранной ячейке и вызываем у нее метод canMove с аргументом в виде текущей клетки. Этот метод вернет true-false, которое мы и запишем в поле available
+      }
+    }
+  }
+
   //  Реализуем логику добавления фигур на доску
 
   private addPawns() {

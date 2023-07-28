@@ -40,3 +40,15 @@
 .white {
   background-color: burlywood;
 }
+
+.selected {
+  background-color: #882626;
+  opacity: 90%;
+}
+
+.available {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background-color: green;
+}

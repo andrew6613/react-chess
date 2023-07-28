@@ -25,4 +25,14 @@ export class Cell {
     this.available = false;
     this.id = Math.random();
   }
+
+  moveFigure(target: Cell) {
+    // метод для движения фигуры
+    if (this.figure && this.figure?.canMove(target)) {
+      // условие: если на поле есть фигура и метод canMove для выбранной ячейки возвращает true , то фигура перемещается на выбранное поле
+      this.figure.moveFigure(target);
+      target.figure = this.figure;
+      this.figure = null;
+    }
+  }
 }
