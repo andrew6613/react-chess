@@ -1,15 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./App.css";
 import BoardComponent from "./components/BoardComponent";
 import { Board } from "./models/Board";
+import { Player } from "./models/Player";
+import { Colors } from "./models/Colors";
 
 function App() {
-  const [board, setBoard] = React.useState(new Board()); // начальное состояние доски является экземпляром класса Board
+  const [board, setBoard] = useState(new Board()); // начальное состояние доски является экземпляром класса Board
+  const [whitePlayer, setWhitePlayer] = useState(new Player(Colors.WHITE));
+  const [blackPlayer, setBlackPlayer] = useState(new Player(Colors.BLACK));
+  const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
 
   useEffect(() => {
     restart(); //  положили функцию рестарта в хук useEffect, так как то, что в нем лежит отрабатывает всегда при первом рендеринге
+    setCurrentPlayer(whitePlayer);
   }, []);
+
+  function swapPlayer() {
+    setCurrentPlayer(
+      currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer
+    );
+  }
 
   function restart() {
     // функция для рестарта игры
@@ -21,7 +33,12 @@ function App() {
 
   return (
     <div className="app">
-      <BoardComponent board={board} setBoard={setBoard} />
+      <BoardComponent
+        board={board}
+        setBoard={setBoard}
+        currentPlayer={currentPlayer}
+        swapPlayer={swapPlayer}
+      />
     </div>
   );
 }
