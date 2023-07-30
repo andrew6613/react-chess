@@ -52,3 +52,17 @@
   border-radius: 50%;
   background-color: green;
 }
+
+.lost {
+  height: calc(100vh - 64px);
+  padding: 30px;
+  margin-left: 50px;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lost_section {
+  height: calc(100vh / 2);
+}

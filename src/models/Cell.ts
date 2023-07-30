@@ -94,11 +94,20 @@ export class Cell {
     this.figure.cell = this;
   }
 
+  addLostFigure(figure: Figure) {
+    figure.color === Colors.BLACK
+      ? this.board.lostBlackFigures.push(figure)
+      : this.board.lostWhiteFigures.push(figure);
+  }
+
   moveFigure(target: Cell) {
     // метод для движения фигуры
     if (this.figure && this.figure?.canMove(target)) {
       // условие: если на поле есть фигура и метод canMove для выбранной ячейки возвращает true , то фигура перемещается на выбранное поле
       this.figure.moveFigure(target);
+      if (target.figure) {
+        this.addLostFigure(target.figure);
+      }
       target.setFigure(this.figure);
       this.figure = null;
     }

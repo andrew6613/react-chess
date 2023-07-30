@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 import BoardComponent from "./components/BoardComponent";
 import { Board } from "./models/Board";
 import { Player } from "./models/Player";
 import { Colors } from "./models/Colors";
+import LostFigures from "./components/LostFigures";
 
 function App() {
   const [board, setBoard] = useState(new Board()); // начальное состояние доски является экземпляром класса Board
@@ -39,6 +40,14 @@ function App() {
         currentPlayer={currentPlayer}
         swapPlayer={swapPlayer}
       />
+      <div className="lost">
+        <div className="lost_section">
+          <LostFigures title="Черные фигуры" figures={board.lostBlackFigures} />
+        </div>
+        <div className="lost_section">
+          <LostFigures title="Белые фигуры" figures={board.lostWhiteFigures} />
+        </div>
+      </div>
     </div>
   );
 }
