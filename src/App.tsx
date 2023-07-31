@@ -6,6 +6,7 @@ import { Board } from "./models/Board";
 import { Player } from "./models/Player";
 import { Colors } from "./models/Colors";
 import LostFigures from "./components/LostFigures";
+import Timer from "./components/Timer";
 
 function App() {
   const [board, setBoard] = useState(new Board()); // начальное состояние доски является экземпляром класса Board
@@ -30,10 +31,12 @@ function App() {
     newBoard.initCells(); // создаем ячейки
     newBoard.addFigures(); // добавляем фигуры
     setBoard(newBoard); // сохраняем чистую пустую доску в наше состояние
+    setCurrentPlayer(whitePlayer);
   }
 
   return (
     <div className="app">
+      <Timer currentPlayer={currentPlayer} restart={restart} />
       <BoardComponent
         board={board}
         setBoard={setBoard}
